@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0 maximum-scale=1.0">
+    <link rel="stylesheet" href="./static/base.css">
+    <title>patyclient</title>
+    <style>
+    *{
+      padding: 0;
+      margin: 0;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>
+
+<script>
+  // 自适应视图接口
+  function initportview(){
+    let hht = document.documentElement.clientWidth
+    let size = hht/7.5 +'px'
+     document.documentElement.style.fontSize = size
+  }
+  initportview()
+</script>
