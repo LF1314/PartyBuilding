@@ -13,9 +13,9 @@
                          </div>
                          <div class="login_form">
                                 <form  :model="formdata">
-                                    <input type="text" placeholder="输入身份证号" v-model="formdata.userid">
-                                    <input type="text" placeholder="输入密码" v-model="formdata.password">
-                                    <button class="login_btn" type="button">登陆</button>
+                                    <input type="text" placeholder="输入身份证号" v-model="formdata.idcard">
+                                    <input type="password" placeholder="输入密码" v-model="formdata.pass">
+                                    <button class="login_btn" type="button" @click="sublogin">登陆</button>
                                 </form>
                          </div>
                   </div>
@@ -29,19 +29,43 @@
           data(){
               return{
                   formdata:{
-                      userid:'',
-                      password:""
+                      idcard:'',
+                      pass:""
                   }
               }
           },
           methods:{
               backlastpage(){
-                  console.log('...')
-                  this.$router.push('/#/index')
+                if(this.$store.state.historypath){
+                       this.$router.push(`/${this.$store.state.historypath}`)
+                        this.$store.commit('CHANGEHHISTORY','')
+                  }
+                 else{
+                     this.$router.push('/')
+                 }
+              }
+              ,
+              sublogin(){
+                  if(this.formdata.idcard && this.formdata.pass){
+                      this.$axios.post('/admin/login',this.formdata).then(res=>{
+                          if(res.code == 200){
+                              this.$store.commit('CHANGEUSERINFO',res.data)
+                              setTimeout(()=>{
+                                  this.$router.push('/mypaty')
+                              },500)
+                          }else{
+                              console.log(res)
+                          }
+                      }).catch(err=>{
+                          console.log(err)
+                      })
+                  }else{
+                     this.$alert('输入框内容不可以为空')
+                  }
               }
           },
           created(){
-              console.log(this.$route)
+            //   console.log(this.$route)
           }
       }
 </script>

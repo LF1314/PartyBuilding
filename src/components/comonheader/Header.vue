@@ -1,9 +1,9 @@
 <template>
-      <div class="header clearfix">
+      <div :class="changeheader()">
                 <div class="login_back fl" >
                      <span @click='backlastpage'>&lt;</span>
                 </div>
-                 <span class="login_test">{{message}}</span>
+                 <span class="login_test">{{mess ? mess : message}}</span>
        </div>
 </template>
 
@@ -18,21 +18,39 @@
         },
         computed:{
             message(){
-               return  this.mess
+               return  this.$store.state.headermes
             }
         },
         methods:{
                  backlastpage(){
-                  console.log('...')
-                  this.$router.push('/')
+                  if(this.$store.state.historypath){
+                       this.$router.push(`/${this.$store.state.historypath}`)
+                        this.$store.commit('CHANGEHHISTORY','')
+                  }
+                 else{
+                     this.$router.push('/')
+                 }
+                
+              },
+              changeheader(){
+                  if(this.mess =='通知早知道')
+                  {
+                      return 'common header2';
+                  }
+                  else{
+                    return 'common header'
+                  }
               }
+        },
+        watch:{
+         
         }
     }
 </script>
 
 <style lang="scss" scoped> 
-.header{
-    height: 44px;
+.common{
+  height: 44px;
     line-height: 44px;
     background-color: #c50206;
     text-align: center;
@@ -40,14 +58,21 @@
     top: 0;
     left: 0;
     width: 100%;
+    .login_test{
+        font-size: 18px;
+        color: #fff;
+    }
+}
+.header{
     .login_back{
         font-size: 17px;
         color: #fff;
         margin-left: 10px;
     }
-    .login_test{
-        font-size: 18px;
-        color: #fff;
+}
+.header2{
+    .login_back{
+        display: none;
     }
 
 }

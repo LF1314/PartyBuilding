@@ -21,7 +21,7 @@
                      </div>
                      <div class="body_nav">
                           <div class="nar_scoll1">
-                                <a class="nar_item">
+                                <a class="nar_item" href="/#/neweyes">
                                      <img src="./img/icon_01@2x.png" alt="">  
                                       <div>信工新闻眼</div>              
                                 </a>
@@ -35,11 +35,11 @@
                                 </a>
                           </div>
                            <div class="nar_scoll1">
-                                <a class="nar_item">
+                                <a class="nar_item" href="/#/through">
                                     <img src="./img/icon_03@2x.png" alt=""> 
                                     <div>党建一点通</div>                                     
                                 </a>
-                                <a class="nar_item">
+                                <a class="nar_item" href="/#/identity">
                                    <img src="./img/icon_06@2x.png" alt="">  
                                    <div>党员亮身份</div>
                                 </a>
@@ -56,12 +56,12 @@
                             <div class="img_a_item">
                             </div>
                             <div class="img_a_item">
-                                  <a href=""></a>
+                                  <a href="/#/learnanywhere"></a>
                                   <a href=""></a>
                             </div>
                             <div class="img_a_item">
                                  <a href=""></a>
-                                 <a href=""></a>
+                                 <a href="/#/activity"></a>
                             </div>
                      </div>
                </div>
@@ -87,14 +87,15 @@ export default
     created(){
         this.$axios.get('/baner').then(res=>{
             if(res.code == 200){
-                console.log(res.data[0].rows)
+                // console.log(res.data[0].rows)
                 this.banners = res.data[0].rows
             }
         })
     },
     methods:{
         newdetail(id){
-           this.$router.push(`/newdeatil/${id}`)
+         this.$router.push(`/newdeatil/${id}`)
+         this.$store.commit('CHANGEHEADERMES','信工新闻眼')
         }
     }
 
@@ -153,8 +154,7 @@ export default
      background-repeat: no-repeat;
      background-size: cover;
      .nar_scoll1{
-         height:98px;
-         
+         height:98px;  
          box-sizing: border-box;
          padding: 5px;
          display: flex;
