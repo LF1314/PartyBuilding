@@ -8,10 +8,10 @@
                    <div class="botton_line"></div>
                    <div class="banner_top">
                        <div class="touxiang">
-                               <img  v-if="!$store.state.userinfo.sex" src="./img/头像@2x.png" height='100%' alt=""> 
+                               <img  v-if="!$store.state.userinfo" src="./img/头像@2x.png" height='100%' alt=""> 
                                <img v-else :src="$store.state.userinfo.avurl" alt="">
                        </div>
-                       <div class="nologin" v-if="!$store.state.userinfo.sex">
+                       <div class="nologin" v-if="!$store.state.userinfo">
                            <a href="/#/login">您还没有登陆，请登录先</a>
                        </div>
                        <div class="nologin" v-else>
@@ -58,7 +58,7 @@
                             </router-link>
                          </ul>
                    </div>
-                    <div class="login_out_btn"  v-if="$store.state.userinfo.sex">
+                    <div class="login_out_btn"  v-if="$store.state.userinfo">
                            <mu-button @click="loginout" class="loginout_btn" color="error">退出登录</mu-button>
                     </div>
                    <div class="footer">
@@ -78,7 +78,7 @@
         loginout(){
             this.$axios.get('/admin/logout').then(res=>{
                 if(res.code ==200){
-                      this.$store.commit('CHANGEUSERINFO',{})
+                      this.$store.commit('CHANGEUSERINFO',null)
                 }
             })
         }

@@ -6,7 +6,7 @@
                            <img src="./img/logo.png" height="100%" alt="">
                      </div>
                    
-                      <a href="/#/login" class="fr index_login">
+                      <a v-if="!$store.state.userinfo" href="/#/login"  class="fr index_login">
                                 登陆
                       </a>
                      
@@ -29,7 +29,7 @@
                                      <img src="./img/icon_04@2x.png" alt="">
                                      <div>掌上组织生活</div>    
                                 </a>
-                                <a class="nar_item">
+                                <a class="nar_item" href="/#/dynam">
                                    <img src="./img/icon_05@2x.png" alt=""> 
                                    <div>党员云互动</div> 
                                 </a>

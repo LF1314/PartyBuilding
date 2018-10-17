@@ -1,6 +1,6 @@
 <template>
       <div :class="changeheader()">
-                <div class="login_back fl" >
+                <div class="login_back" >
                      <span @click='backlastpage'>&lt;</span>
                 </div>
                  <span class="login_test">{{mess ? mess : message}}</span>
@@ -18,7 +18,7 @@
         },
         computed:{
             message(){
-               return  this.$store.state.headermes
+               return  this.$route.meta
             }
         },
         methods:{
@@ -68,11 +68,15 @@
         font-size: 17px;
         color: #fff;
         margin-left: 10px;
+        position: absolute;
+        left: 0;;
+        top:0;
     }
 }
 .header2{
     .login_back{
         display: none;
+
     }
 
 }

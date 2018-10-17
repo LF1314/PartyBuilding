@@ -21,6 +21,7 @@
                    
                  </div>
                    <mu-button 
+                   class="subbtn"
                    color="secondary" 
                    v-loading="loading1" 
                    data-mu-loading-size="24" 
@@ -50,13 +51,14 @@
         methods:{
             changepass(){
                 this.loading1 = true
-                 let idcard = this.$store.state.userinfo.idcard
-                 let  newpass = this.newpass
+              
                   if(this.newpass  != this.checkpas){
                      this.$alert('两次输入的密码不一样')
                      this.loading1 = false
                  }
                  else if(this.oldpass){
+                      let idcard = this.$store.state.userinfo.idcard
+                      let  newpass = this.newpass
                      this.$axios.post('/admin/changpas',{idcard , newpass}).then(res=>{
                          if(res.code == 200)
                          {
@@ -67,6 +69,7 @@
                          }
                      })
                  }else{
+                      this.loading1 = false
                      this.$alert('旧密码不可以为空')
                  }
                

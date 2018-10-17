@@ -32,6 +32,19 @@
                
         //     })
         // }
+        //获取党员云互动的信息
+        // created(){
+        //     axios.get('http://211.67.177.56:8080/hhdj/forum/forumList.do?page=1&rows=198&type=0&cates=0').then(res=>{
+        //         console.log(res.data.rows)
+        //         let arr = res.data.rows
+        //         arr.forEach(element => {
+        //             this.$axios.post('/dynamic',element).then(res=>{
+        //                 console.log(res)
+        //             })
+                    
+        //         });
+        //     })
+        // }
     }
 </script>
 

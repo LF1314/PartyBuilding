@@ -9,7 +9,7 @@ import createPersistedState from 'vuex-persistedstate'
 const state = {
     headermes:'',
     historypath:'',
-    userinfo:{}
+    userinfo:null
 }
 const mutations = {
       'CHANGEHEADERMES'(state,upload){

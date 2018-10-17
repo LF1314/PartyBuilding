@@ -129,6 +129,19 @@ Vue.use(Router)
     meta:'修改密码',
     component:()=>import('@views/changepa/changep')
 
+  },
+  {
+    path:'/dynam',
+    name:'dynam',
+    meta:'党员云互动',
+    component:()=>import('@views/dynamic/dynamic')
+  }
+  ,
+  {
+    path:'/dynamdetail/:id',
+    name:'dynamdetail',
+    meta:'党员云互动',
+    component:()=>import('@views/dynamic/comments')
   }
 
 
@@ -139,7 +152,7 @@ Vue.use(Router)
    if(from.name){
     store.commit('CHANGEHHISTORY',from.name)
    }
-   let arr =['info','integr','changepas']
+   let arr =['info','integr','changepas','dynam']
    if(!store.state.userinfo){
       arr.forEach(item=>{
         if(item == to.name){

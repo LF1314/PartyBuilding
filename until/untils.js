@@ -25,5 +25,9 @@ const xhr = {
             })
         })
     },
+    put(url,data,config){
+        return this.post(url,data,'put',config)
+    }
+    
 }
 export default xhr

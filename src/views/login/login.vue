@@ -49,6 +49,7 @@
                   if(this.formdata.idcard && this.formdata.pass){
                       this.$axios.post('/admin/login',this.formdata).then(res=>{
                           if(res.code == 200){
+                              res.data.statu = 1
                               this.$store.commit('CHANGEUSERINFO',res.data)
                               setTimeout(()=>{
                                   this.$router.push('/mypaty')
