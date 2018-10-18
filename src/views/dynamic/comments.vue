@@ -82,7 +82,7 @@ export default
           this.$axios.get('/dynamic/lon',{id:this.danamicid}).then(res=>{
             //   console.log(res)
               this.dyna = res.data
-              console.log(this.commlist)
+            //   console.log(this.commlist)
           })
       },
       //获取当前动态的评论

@@ -10,6 +10,7 @@
     export default
     {
         name:'shoot',
+        
         data(){
             return{
                 mess:'随时随地拍'

@@ -30,7 +30,7 @@
                     </router-link>       
             </div>
              <div class="nar_life_item fl">
-                     <router-link to="">
+                     <router-link to="/lifechore">
                        <img src="./img/icon4.png" alt="">   
                        <div>
                            民主评议

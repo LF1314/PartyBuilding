@@ -143,6 +143,25 @@ Vue.use(Router)
     meta:'党员云互动',
     component:()=>import('@views/dynamic/comments')
   }
+  ,
+  {
+    path:'/lifechore',
+    name:'lifechore',
+    meta:'掌上组织生活',
+    component:()=>import('@views/life/lifechore')
+  },
+  {
+    path:'/personsum',
+    name:'personsum',
+    meta:'个人总结',
+    component:()=>import ("@views/life/personsum")
+  },
+  {
+    path:'/review',
+    name:'review',
+    meta:'民主评议',
+    component:()=>import ("@views/life/review")
+  }
 
 
   ]
@@ -152,7 +171,7 @@ Vue.use(Router)
    if(from.name){
     store.commit('CHANGEHHISTORY',from.name)
    }
-   let arr =['info','integr','changepas','dynam']
+   let arr =['info','integr','changepas','dynam','lifechore']
    if(!store.state.userinfo){
       arr.forEach(item=>{
         if(item == to.name){
