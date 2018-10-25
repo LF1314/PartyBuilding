@@ -76,11 +76,9 @@
     },
     methods:{
         loginout(){
-            this.$axios.get('/admin/logout').then(res=>{
-                if(res.code ==200){
                       this.$store.commit('CHANGEUSERINFO',null)
-                }
-            })
+                      this.$store.commit('ADDTOKEN','')
+           
         }
     }
     }

@@ -6,12 +6,12 @@
            </div>
            <div class="commen_danamic">
                 <div class="dynamic_img">
-                        <div class="img_messs">
+                        <div class="img_messs" v-if="dyna.userId">
                             <div class="touxiangs">
-                                <img :src="dyna.header" width="100%" height="100%" alt="">
+                                <img  :src="dyna.userId.avurl" width="100%" height="100%" alt="">
                             </div>
                             <div >
-                                <p>{{dyna.username}}</p>
+                                <p>{{dyna.userId.username}}</p>
                                 <div class="othermesssage">
                                     <img src="./img/时间.png" alt="">
                                     <span>{{dyna.currentTime}}</span>
@@ -25,22 +25,21 @@
                       <p> {{dyna.content}}</p>
                   </div>       
            </div>
-
            <div class="commonlist_wraper">
                  <div class="commlist_iner">
                       <ul>
                           <li class="commentlist" v-for="(com,index) in commlist" :key="index">
                                <div class="personmess">
                                      <div class="av_img">
-                                        <img :src="com.header" alt="">
+                                        <img :src="com.userId.avurl" alt="">
                                      </div>
                                      <div class="othermess">
-                                           <p>{{com.usename}}</p>
+                                           <p>{{com.userId.usename}}</p>
                                            <p>{{com.timeFormat}}</p>
                                      </div>
                                </div>
                                <div class="com_contne">
-                                  <p>{{com.comment}}</p>
+                                  <p>{{com.comments}}</p>
                                </div>
                           </li>
                       </ul>
@@ -77,19 +76,12 @@ export default
         Header:()=>import ('../../components/comonheader/Header.vue')
     },
     methods:{
-      //获取当前的状态
-      getnadymic(){
-          this.$axios.get('/dynamic/lon',{id:this.danamicid}).then(res=>{
-            //   console.log(res)
-              this.dyna = res.data
-            //   console.log(this.commlist)
-          })
-      },
       //获取当前动态的评论
       getcomments(){
-          this.$axios.get('/comments/findcom',{id:this.danamicid}).then(res=>{
+          this.$axios.get('/comment',{id:this.danamicid}).then(res=>{
               if(res.code == 200){
-                  this.commlist = res.data
+                 this.dyna = res.inter
+                 this.commlist = res.data
               }
           })
       }
@@ -100,14 +92,11 @@ export default
          let user = this.$store.state.userinfo
          let data = +new Date()
          obj.timeFormat = funcs.changedate(data)
-         obj.header = user.avurl
-         obj.useId = user.idcard
-         obj.usename = user.username
-         obj.dynamicid = this.danamicid
-         obj.comment = this.comment
-        //  console.log(obj)
-         this.$axios.post('/comments/addcom',obj).then(res=>{
-            //  console.log(res)
+         obj.interId = this.danamicid
+         obj.comments = this.comment
+         obj.userId = user._id
+         this.$axios.post('/comment/add',obj).then(res=>{
+             console.log(res)
              if(res.code ==200)
              {
                  this.getcomments()
@@ -117,15 +106,11 @@ export default
     },
     created(){
      this.danamicid = this.$route.params.id
-    //  console.log(this.danamicid)
-     this.getnadymic()
      this.getcomments()
     }
 }
     
 </script>
-
-
 <style scoped lang ='scss'>
 // 评论列表
 .commentlist{

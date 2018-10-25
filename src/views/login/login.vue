@@ -47,10 +47,12 @@
               ,
               sublogin(){
                   if(this.formdata.idcard && this.formdata.pass){
-                      this.$axios.post('/admin/login',this.formdata).then(res=>{
+                      this.$axios.post('/demo/login',this.formdata).then(res=>{
                           if(res.code == 200){
+                              console.log(res.data)
                               res.data.statu = 1
                               this.$store.commit('CHANGEUSERINFO',res.data)
+                              this.$store.commit('ADDTOKEN',res.token)
                               setTimeout(()=>{
                                   this.$router.push('/mypaty')
                               },500)

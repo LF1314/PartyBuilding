@@ -15,7 +15,7 @@
                      <div class="banner_wraper" v-if="banners[0]">
                             <mu-carousel hide-controls>
                                 <mu-carousel-item v-for="(ban , index) in banners" :key="index">
-                                    <img :src="ban.imgUrl" @click="newdetail(ban.url)">
+                                    <img :src="ban.imgUrl" @click="newdetail(ban._id)">
                                 </mu-carousel-item>
                             </mu-carousel>
                      </div>
@@ -85,10 +85,11 @@ export default
         }
     },
     created(){
-        this.$axios.get('/baner').then(res=>{
+        this.$axios.get('/banner/demo').then(res=>{
             if(res.code == 200){
-                // console.log(res.data[0].rows)
-                this.banners = res.data[0].rows
+                console.log(res.data)
+                this.banners = res.data
+                // this.banners = res.data[0].rows
             }
         })
     },

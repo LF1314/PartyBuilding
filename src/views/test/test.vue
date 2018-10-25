@@ -31,6 +31,16 @@
         methods:{
  
         },
+        // created(){
+        //     let id_card = 1001;
+        //     let password = 123456;
+        //     let from = new FormData()
+        //     from.append('id_card',id_card)
+        //     from.append('password',password)
+        //     axios.post('http://211.67.177.56:8080/hhdj/user/userLogin.do',from).then(res=>{
+        //         console.log(res)
+        //     })
+        // }
         //测试添加个人总结接口
         // created(){
         //     this.$axios.post('/summary/addsum',{

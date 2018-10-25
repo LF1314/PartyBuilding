@@ -1,7 +1,9 @@
 import axios from 'axios'
+import store from '../src/vuex/index'
 const instance = axios.create({
     baseURL:'/api',
     timeout:10000
+
 })
 
 const xhr = {
@@ -16,7 +18,9 @@ const xhr = {
             })
         })
     },
-    post(url, data , methods = 'post',config){
+    post(url, data , methods = 'post',config={
+        headers:{'token':store.state.token}
+    }){
         return new Promise((resolve,reject)=>{
             instance[methods](url,data,config).then(res=>{
                 resolve(res.data)

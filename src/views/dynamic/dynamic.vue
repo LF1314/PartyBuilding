@@ -17,13 +17,13 @@
                                     <div class="dynamic_img">
                                           <div class="img_messs">
                                                 <div class="touxiangs">
-                                                    <img :src="dyna.header" width="100%" height="100%" alt="">
+                                                    <img :src="dyna.userId.avurl" width="100%" height="100%" alt="">
                                                 </div>
                                                 <div >
-                                                    <p>{{dyna.username}}</p>
+                                                    <p>{{dyna.userId.userName}}</p>
                                                     <div class="othermesssage">
                                                         <img src="./img/时间.png" alt="">
-                                                        <span>{{dyna.currentTime}}</span>
+                                                        <span v-if='dyna.currentTime'>{{dyna.currentTime}}</span>
                                                         <img src="./img/声音.png" alt="">
                                                         <span>公开</span>
                                                     </div>
@@ -97,16 +97,13 @@ export default
             let data = +new Date()
             let obj ={}
             obj.content = this.content
-            obj.createTime = data
-            obj.header = this.$store.state.userinfo.avurl
-            obj.username =  this.$store.state.userinfo.username
-            obj.userId = this.$store.state.userinfo.idcard
             obj.currentTime = funcs.changedate(data)
+            obj.userId = this.$store.state.userinfo._id
             console.log(obj)
-            this.$axios.post('/dynamic',obj).then(res=>{
-                console.log(res)
+            this.$axios.post('/inter/add',obj).then(res=>{
                 this.fshowfabu()
                 this.gettendata()
+                this.content = ''
             })
         },
         //是否显示发布区域
@@ -115,16 +112,14 @@ export default
         },
         getdata(){
              this.refreshing = true
-            this.$axios.get('/dynamic',{pn:this.pn}).then(res=>{
+             this.$axios.get('/inter',{pn:this.pn}).then(res=>{
                 if(res.data.length <= 10){
                     this.dynamiclist = res.data
                     this.ladall = true;
-                    this.refreshing =false
-                    
+                    this.refreshing =false    
                 }
             else{
                     this.dynamiclist = res.data
-               console.log(this.dynamiclist)
                  this.refreshing = false
             }
             })

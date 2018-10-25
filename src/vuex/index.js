@@ -9,7 +9,8 @@ import createPersistedState from 'vuex-persistedstate'
 const state = {
     headermes:'',
     historypath:'',
-    userinfo:null
+    userinfo:null,
+    token:''
 }
 const mutations = {
       'CHANGEHEADERMES'(state,upload){
@@ -20,6 +21,9 @@ const mutations = {
       },
       'CHANGEUSERINFO'(state,upload){
         state.userinfo = upload
+      },
+      'ADDTOKEN'(state,upload){
+        state.token = upload
       }
 }
 const store = new Vuex.Store({

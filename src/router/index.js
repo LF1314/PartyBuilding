@@ -161,6 +161,12 @@ Vue.use(Router)
     name:'review',
     meta:'民主评议',
     component:()=>import ("@views/life/review")
+  },
+  {
+    path:'/compaty/:id',
+    name:'compaty',
+    meta:'参评党员',
+    component:()=>import('@views/life/compaty')
   }
 
 
